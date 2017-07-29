@@ -1,0 +1,32 @@
+<p>Selected Games:{{selectGame.name}}</p>
+<div class="table-controls">
+    <div class="search-area" style="height:60px;">
+      <select [(ngModel)]="searchType" style="float:left;">
+        <option value="name">Name</option>
+        <option value="platform">Platform</option>
+      </select>
+<input style="float:left;" 
+  [(ngModel)]="searchText"/>
+<button style="float:left;" (click)="gameServ.search(searchType,searchText)">Search</button>
+
+</div>
+<button routerLink="/game/edit/new">New Game</button>
+<button (click)="gameServ.deleteChecked()">Delete in batch</button>
+<button (click)="sortByAsccending()">ASC</button>
+<button (click)="sortByDesccending()">Desc</button>
+<button (click)="sortByRadom()">Random</button>
+</div>
+<div class="row table-header">
+      <div class="col-1">select </div>
+      <div class="col-2" (click)="sortByAsccending('name')">name </div>
+      <div class="col-2" (click)="sortByAsccending('platform')">platform </div>
+      <div class="col-1" (click)="sortByAsccending('review')">review </div>
+      <div class="col-1" (click)="sortByDesccending('rating')">rating </div>
+      <div class="col-1">Operation </div>
+</div>
+<div class="row table-row" *ngFor="let game of searchResult">
+  <app-game-item [game]="game" (gameClick)="selectGame = $event"></app-game-item>
+</div>
+<div class="row table-row" *ngFor="let game of games">
+  <app-game-item [game]="game" (gameClick)="selectGame = $event"></app-game-item>
+</div>

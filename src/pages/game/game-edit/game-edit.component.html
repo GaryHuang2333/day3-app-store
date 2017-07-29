@@ -1,0 +1,29 @@
+<p>
+  <span *ngIf="isNew">New Game</span>
+  <span *ngIf="!isNew">Edit Game:{{this.gameId}}</span>
+  <button (click)="back()">Return</button>
+</p>
+
+<div>
+name：
+<input type="text" [(ngModel)]="game.name"/>
+</div>
+
+<div>
+platform：
+<select [(ngModel)]="game.platform">
+  <option value="IOS">IOS</option>
+  <option value="Android">Android</option>
+</select>
+</div>
+
+<div>
+review：
+<input type="text" [(ngModel)]="game.review"/>
+</div>
+<div>
+rating:
+<input type="text" [(ngModel)]="game.rating"/>
+</div>
+
+<button routerLink="/game" (click)="save()">submit</button>
